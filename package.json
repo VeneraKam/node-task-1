@@ -1,0 +1,20 @@
+{
+  "name": "task-1",
+  "version": "1.0.0",
+  "description": "task-1",
+  "main": "node-index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "venera",
+  "license": "ISC",
+  "dependencies": {
+    "@types/yargs": "^17.0.24",
+    "chalk": "^4.1.2",
+    "yargs": "^17.7.2"
+  }
+}
