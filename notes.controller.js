@@ -35,24 +35,34 @@ async function printNotes() {
   });
 }
 
-async function remove(id) {
+async function removeNote(id) {
   const notes = await getNotes();
-  
-  const index = notes.findIndex((notes) => notes.id === id);
-  console.log(index);
 
-  if (index === -1) {
-    console.log(chalk.bgGreen("Id don't find!"));
-  } else {
-    notes.splice(index, 1);
-    console.log(chalk.bgGreen("Note was removed!"));
+  const filtered = notes.filter((note) => note.id !== id);
+
+  await saveNotes(filtered);
+  console.log(chalk.red(`Note with id="${id}" has been removed.`));
+}
+
+async function editNote({ id, title }) {
+  const notes = await getNotes();
+
+  function update(note) {
+    if (note.id === id) {
+      note.title = title;
+    }
+    console.log("note", note);
+    return note;
   }
 
-  await saveNotes(notes);
+  const filtered = notes.map((note) => update(note));
+  console.log("filtered", filtered);
+  await saveNotes(filtered);
 }
 
 module.exports = {
   addNote,
-  printNotes,
-  remove
+  getNotes,
+  removeNote,
+  editNote
 };
